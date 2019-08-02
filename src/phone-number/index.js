@@ -1,0 +1,24 @@
+function maskPhoneNumber(value, delimiter = '-') {
+  const match = value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+
+  let result = '';
+
+  result += match[2] || match[1].length === 3
+    ? `${match[1]}${delimiter}${match[2]}`
+    : match[1];
+
+  result += match[3] || match[2].length === 3
+    ? `${delimiter}${match[3]}`
+    : '';
+
+  return result;
+}
+
+function unmaskPhoneNumber(value) {
+  return value.replace(/\D/g, '');
+}
+
+export {
+  maskPhoneNumber,
+  unmaskPhoneNumber,
+};
